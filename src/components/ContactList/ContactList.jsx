@@ -6,11 +6,11 @@ import styles from './ContactList.module.css';
 
 const ContactList = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(state => state.contacts);
+  const contacts = useSelector(state => state.contacts.contacts);
 
   return (
     <ul className={styles.contactList}>
-      {contacts.contacts.map(contact => (
+      {contacts.map(contact => (
         <ContactListItem
           key={contact.id}
           contact={contact}

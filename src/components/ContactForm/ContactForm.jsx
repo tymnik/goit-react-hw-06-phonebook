@@ -1,31 +1,31 @@
 import React, { useState } from 'react';
-import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
+import { nanoid } from 'nanoid';
 import { addContact } from '../../store/reducer';
 import styles from './ContactForm.module.css';
 
 const ContactForm = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(state => state.contacts);
+  const contacts = useSelector((state) => state.contacts.contacts);
 
   const [contact, setContact] = useState({
     name: '',
     number: '',
   });
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
-    setContact(prevContact => ({
+    setContact((prevContact) => ({
       ...prevContact,
       [name]: value,
     }));
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    const isDuplicate = contacts.contacts.some(
-      existingContact =>
+    const isDuplicate = contacts.some(
+      (existingContact) =>
         existingContact.name.toLowerCase() === contact.name.toLowerCase()
     );
 

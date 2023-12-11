@@ -27,9 +27,11 @@ const App = () => {
     dispatch(addContact({ ...contact, id: nanoid() }));
   };
 
-  const filteredContacts = contacts.filter(contact =>
-    contact.name.toLowerCase().includes(filter.toLowerCase())
-  );
+  const filteredContacts = Array.isArray(contacts)
+    ? contacts.filter(contact =>
+        contact.name.toLowerCase().includes(filter.toLowerCase())
+      )
+    : [];
 
   return (
     <div>
@@ -37,7 +39,6 @@ const App = () => {
         Phonebook
       </h1>
       <ContactForm onSubmit={handleAddContact} />
-
       <h2 style={{ color: '#121849', fontSize: '24px', textAlign: 'center' }}>
         Contacts
       </h2>

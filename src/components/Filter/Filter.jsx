@@ -1,15 +1,20 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setFilter } from '../../store/reducer';
 import styles from './Filter.module.css';
 
-const Filter = ({ value, onChange }) => {
+const Filter = () => {
+  const dispatch = useDispatch();
+  const filter = useSelector(state => state.contacts.filter);
+
   return (
     <div className={styles.filterForm}>
       <label className={styles.filterLabel}>
         Find contacts by name:
         <input
           type="text"
-          value={value}
-          onChange={e => onChange(e.target.value)}
+          value={filter}
+          onChange={e => dispatch(setFilter(e.target.value))}
           placeholder="Search..."
           className={styles.inputField}
         />

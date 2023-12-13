@@ -7,14 +7,18 @@ const Filter = () => {
   const dispatch = useDispatch();
   const filter = useSelector(state => state.contacts.filter);
 
+  const handleFilterChange = e => {
+    dispatch(setFilter(e.target.value.toLowerCase().trim()));
+  };
+
   return (
     <div className={styles.filterForm}>
       <label className={styles.filterLabel}>
-        Find contacts by name:
+        Find contacts by name or number:
         <input
           type="text"
           value={filter}
-          onChange={e => dispatch(setFilter(e.target.value))}
+          onChange={handleFilterChange}
           placeholder="Search..."
           className={styles.inputField}
         />

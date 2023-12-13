@@ -6,26 +6,26 @@ import styles from './ContactForm.module.css';
 
 const ContactForm = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector((state) => state.contacts.contacts);
+  const contacts = useSelector(state => state.contacts.contacts);
 
   const [contact, setContact] = useState({
     name: '',
     number: '',
   });
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     const { name, value } = e.target;
-    setContact((prevContact) => ({
+    setContact(prevContact => ({
       ...prevContact,
       [name]: value,
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
 
     const isDuplicate = contacts.some(
-      (existingContact) =>
+      existingContact =>
         existingContact.name.toLowerCase() === contact.name.toLowerCase()
     );
 
